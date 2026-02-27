@@ -4,38 +4,28 @@ Personal Claude Code skills, commands, and hooks.
 
 ## Structure
 
-- `commands/` — Slash commands (`/chat`, `/learn`, `/auto-review`, etc.)
+- `commands/` — Slash commands (`/chat`, `/learn`, `/auto-review`, `/gsd:*`, etc.)
 - `skills/` — Skills with `SKILL.md` per folder (`pr-comment`, `document`)
-- `hooks/` — Hook scripts (`auto-review-reminder.sh`)
+- `hooks/` — Hook scripts (`auto-review-reminder.sh`, GSD hooks)
 - `CLAUDE.md` — Global instructions
 
 ## Install
 
-Creates directory symlinks from `~/.claude/` to this repo:
-
-```
-~/.claude/commands → repo/commands
-~/.claude/hooks    → repo/hooks
-~/.claude/skills   → repo/skills
-~/.claude/CLAUDE.MD → repo/CLAUDE.md
-```
-
-If GSD is installed at `~/.gsd/`, it also links GSD commands/hooks into the repo dirs (gitignored).
+Create directory symlinks from `~/.claude/` to this repo:
 
 ```bash
-./install.sh
+ln -s ~/dev/util/skills/commands ~/.claude/commands
+ln -s ~/dev/util/skills/hooks    ~/.claude/hooks
+ln -s ~/dev/util/skills/skills   ~/.claude/skills
+ln -s ~/dev/util/skills/CLAUDE.md ~/.claude/CLAUDE.MD
 ```
 
-To remove symlinks:
-
-```bash
-./install.sh --uninstall
-```
+Remove any existing directories/files at those paths first.
 
 ## Adding new content
 
-New files added to `commands/`, `skills/`, or `hooks/` are discovered immediately — `git pull` is all you need. No reinstall required.
+Push files to `commands/`, `skills/`, or `hooks/`. `git pull` is all that's needed — no reinstall.
 
 ## GSD
 
-GSD lives separately in `~/.gsd/` and is wired in via local symlinks (gitignored). The GSD updater (`/gsd:update`) should be pointed at `~/.gsd/` if you need to update it.
+GSD commands and hooks live directly in this repo. The GSD updater (`/gsd:update`) writes to `~/.claude/commands/gsd/` which resolves into the repo via the directory symlink, so updates overwrite in place.
