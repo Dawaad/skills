@@ -2,7 +2,3 @@
 *.swp
 *.swo
 *~
-
-# GSD symlinks (local machine paths, not portable)
-commands/gsd
-hooks/gsd-*.js
