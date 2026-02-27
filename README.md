@@ -11,7 +11,16 @@ Personal Claude Code skills, commands, and hooks.
 
 ## Install
 
-Symlinks content into `~/.claude/` for discovery by Claude Code:
+Creates directory symlinks from `~/.claude/` to this repo:
+
+```
+~/.claude/commands → repo/commands
+~/.claude/hooks    → repo/hooks
+~/.claude/skills   → repo/skills
+~/.claude/CLAUDE.MD → repo/CLAUDE.md
+```
+
+If GSD is installed at `~/.gsd/`, it also links GSD commands/hooks into the repo dirs (gitignored).
 
 ```bash
 ./install.sh
@@ -23,6 +32,10 @@ To remove symlinks:
 ./install.sh --uninstall
 ```
 
-## Usage
+## Adding new content
 
-After install, skills and commands are available in any Claude Code session. Updates via `git pull` take effect immediately — no reinstall needed.
+New files added to `commands/`, `skills/`, or `hooks/` are discovered immediately — `git pull` is all you need. No reinstall required.
+
+## GSD
+
+GSD lives separately in `~/.gsd/` and is wired in via local symlinks (gitignored). The GSD updater (`/gsd:update`) should be pointed at `~/.gsd/` if you need to update it.
