@@ -1,0 +1,32 @@
+{
+  "name": "jared-skills",
+  "description": "Personal Claude Code skills, commands, and hooks",
+  "author": "Dawaad",
+  "version": "1.0.0",
+  "skills": [
+    {
+      "name": "pr-comment",
+      "path": "skills/pr-comment/SKILL.md"
+    },
+    {
+      "name": "document",
+      "path": "skills/document/SKILL.md"
+    }
+  ],
+  "commands": [
+    "commands/chat.md",
+    "commands/learn.md",
+    "commands/auto-review.md",
+    "commands/handle-pr-comments.md",
+    "commands/techdebt-duplicate.md",
+    "commands/techdebt-standards.md",
+    "commands/pr-comment/triage.md",
+    "commands/pr-comment/plan.md",
+    "commands/pr-comment/fix.md",
+    "commands/pr-comment/resolve.md",
+    "commands/pr-comment/status.md"
+  ],
+  "hooks": [
+    "hooks/auto-review-reminder.sh"
+  ]
+}
