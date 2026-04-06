@@ -1,0 +1,44 @@
+{
+  "skill_name": "enrich",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I just exported a list from Apollo — it's at /home/jared/.claude/commands/enrich-workspace/sample_apollo_export.csv. The Pain Points, Recent News, and Personalized Opener columns are all empty. Can you fill those in? Pain Points should be 1-2 sentences about operational challenges they're likely facing based on their company and role. Recent News should be actual recent developments. Personalized Opener should be a cold email first line. Also add a Resources column with the sources you used.",
+      "expected_output": "Should interview to clarify format/priority/fallbacks for each column, present an enrichment plan, then research each row using waterfall strategy, run humanizer on sentence outputs, and write back to the same CSV with a Resources column containing source URLs",
+      "files": ["/home/jared/.claude/commands/enrich-workspace/sample_apollo_export.csv"],
+      "expectations": [
+        "The agent presented an enrichment plan summary before starting any research or enrichment",
+        "The enriched CSV contains non-empty Pain Points values for at least 4 of 5 rows",
+        "The enriched CSV contains a Resources column with URLs or source references for each row",
+        "Sentence-style outputs (Pain Points, Personalized Opener) were flagged for or run through the humanizer skill",
+        "A backup of the original CSV was created before overwriting"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I have a prospect list at /home/jared/.claude/commands/enrich-workspace/sample_apollo_export.csv. I need you to enrich it but I also want to add two new columns that aren't there yet: 'Tech Stack' (comma-separated list of tools they use) and 'Hiring Signals' (are they hiring for marketing/ops/data roles, yes or no with brief detail). Fill in any other empty columns too while you're at it.",
+      "expected_output": "Should ask clarifying questions about the new columns (format, source priority, fallbacks), add them to the CSV alongside enriching existing empty columns, use Apollo for tech stack data, web search for hiring signals, and produce a complete enrichment plan before starting",
+      "files": ["/home/jared/.claude/commands/enrich-workspace/sample_apollo_export.csv"],
+      "expectations": [
+        "The enriched CSV contains new Tech Stack and Hiring Signals columns that did not exist in the original",
+        "The agent asked clarifying questions or made explicit assumptions about format, source priority, and fallback for the new columns",
+        "Tech Stack values are comma-separated lists of tool names, not full sentences",
+        "The enriched CSV contains a Resources column with source attribution",
+        "An enrichment plan was presented before research began"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "enrich /home/jared/.claude/commands/enrich-workspace/sample_apollo_export.csv — just the Pain Points column. Make them sound like something a real person would write in a CRM note, not AI-generated. Keep it brief, 1 sentence max. If you can't find specific pain info, just put 'No signal found'.",
+      "expected_output": "Should still confirm the plan (single column, specific format, clear fallback), research pain points via web search for each company, run humanizer on every output since they're sentences, and write back with Resources column. Should NOT over-interview since the user was already specific.",
+      "files": ["/home/jared/.claude/commands/enrich-workspace/sample_apollo_export.csv"],
+      "expectations": [
+        "Only the Pain Points column was enriched — other originally-empty columns (Recent News, Personalized Opener) remain empty",
+        "All Pain Points values are 1 sentence or shorter",
+        "At least one row uses the fallback value 'No signal found' or the agent explains why all rows had findable signals",
+        "The agent did NOT conduct a lengthy multi-question interview since the user already specified format, length, and fallback",
+        "A Resources column was added with source attribution for each enriched row"
+      ]
+    }
+  ]
+}

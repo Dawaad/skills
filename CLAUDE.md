@@ -15,6 +15,12 @@ Point out obvious mismatches, inconsistencies, or things that seem off. Use comm
 - Identify conflicts with existing patterns in the codebase
 - Flag any security concerns or data validation gaps
 
+## gstack
+
+to use the /browse skill from gstack for all web browsing, never use mcp__claude-in-chrome__* tools, and lists the available skills: /plan-ceo-review, /plan-eng-review, /review, /ship, /browse, /qa, /setup-browser-cookies, /retro. Then ask the user if they also want to add gstack to the current project so teammates get it.
+
+
+
 ## Git Commit Convention
 
 - **Format**: `<type>(<scope>): <subject>`

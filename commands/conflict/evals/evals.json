@@ -1,0 +1,51 @@
+{
+  "skill_name": "conflict",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I just pulled main into my feature branch and got merge conflicts. Can you help me resolve them?",
+      "expected_output": "All trivial conflicts auto-resolved (imports merged, features combined), summary presented, no commit made, files staged for approval",
+      "files": [],
+      "expectations": [
+        "All conflict markers (<<<<<<<, =======, >>>>>>>) are removed from resolved files",
+        "Both sets of imports are combined in app.ts (auth, cache, logger, metrics)",
+        "All three feature entries are present: dashboard, settings, analytics, notifications",
+        "The capitalize function from the feature branch is preserved in utils.ts",
+        "A structured summary is presented categorizing each conflict",
+        "No git commit is made - only staging",
+        "Conflicts are categorized as trivial"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I merged main into my branch and there are conflicts in auth.ts and config.ts. The main branch did a big rename and cleanup, my branch added some features. Help me sort this out.",
+      "expected_output": "Rename from validateUser to validateAccount is recognized and feature branch's additions (banned check, write permission) are applied to the renamed version. Legacy auth removal is respected. Config values are merged with reasoning shown.",
+      "files": [],
+      "expectations": [
+        "All conflict markers are removed from resolved files",
+        "The function is named validateAccount (main's rename wins)",
+        "The banned check from the feature branch is incorporated into validateAccount",
+        "The legacy checkLegacyAuth function is removed (main's intentional deletion wins)",
+        "The write permission is preserved in getPermissions",
+        "Config merges both sides' changes (v2 url, higher timeout/retries from main, higher maxConnections from branch)",
+        "A summary explains the reasoning for each clear-winner decision",
+        "No git commit is made"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "ugh, pulled main and everything is conflicting. pricing.ts, handler.ts, types.ts all have conflicts. Main rewrote the pricing model and handler architecture, and my branch went in a totally different direction with the pricing and added api key auth. help",
+      "expected_output": "Skill identifies these as needs-human conflicts, presents both sides with context from commit messages, suggests possible resolutions but defers to user for business/architecture decisions",
+      "files": [],
+      "expectations": [
+        "The pricing.ts conflict is categorized as needs-human (competing pricing models)",
+        "The handler.ts conflict is categorized as needs-human (middleware vs api-key patterns)",
+        "Both sides' commit messages are referenced to explain intent",
+        "The FREE_TIER_LIMIT discrepancy (500 vs 5000) is highlighted as a business decision",
+        "The user is asked for input before resolving needs-human conflicts",
+        "A structured summary is presented with both versions shown for each complex conflict",
+        "No auto-resolution is applied to the competing implementations"
+      ]
+    }
+  ]
+}
