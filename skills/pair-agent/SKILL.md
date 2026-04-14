@@ -1,0 +1,1 @@
+/home/jared/dev/util/skills/skills/gstack/pair-agent/SKILL.md

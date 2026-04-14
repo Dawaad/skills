@@ -68,7 +68,7 @@ def upload_emails(api_key, emails):
     )
 
     data = resp.json()
-    if "error" in data:
+    if data.get("error"):
         print(f"Upload error: {data['error']}")
         sys.exit(1)
 
@@ -108,12 +108,19 @@ def download_results(api_key, file_id):
 
     results = {}
     content = resp.content.decode("utf-8")
-    reader = csv.reader(io.StringIO(content))
-    for row in reader:
-        if len(row) >= 2:
-            email = row[0].strip().lower()
-            status = row[1].strip()
-            results[email] = status
+    # MV returns CSV with headers: email,quality,result,free,role
+    reader = csv.DictReader(io.StringIO(content))
+    if reader.fieldnames and "result" in reader.fieldnames:
+        for row in reader:
+            email = row["email"].strip().lower()
+            results[email] = row["result"].strip()
+    else:
+        # Fallback: assume email,status format
+        reader2 = csv.reader(io.StringIO(content))
+        for row in reader2:
+            if len(row) >= 2:
+                email = row[0].strip().lower()
+                results[email] = row[1].strip()
 
     return results
 

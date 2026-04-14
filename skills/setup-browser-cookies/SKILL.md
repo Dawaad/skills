@@ -1,0 +1,1 @@
+/home/jared/dev/util/skills/skills/gstack/setup-browser-cookies/SKILL.md
