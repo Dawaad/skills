@@ -17,9 +17,13 @@ Point out obvious mismatches, inconsistencies, or things that seem off. Use comm
 
 ## gstack
 
-to use the /browse skill from gstack for all web browsing, never use mcp__claude-in-chrome__* tools, and lists the available skills: /plan-ceo-review, /plan-eng-review, /review, /ship, /browse, /qa, /setup-browser-cookies, /retro. Then ask the user if they also want to add gstack to the current project so teammates get it.
+to use the /browse skill from gstack for all web browsing, never use mcp**claude-in-chrome**\* tools, and lists the available skills: /plan-ceo-review, /plan-eng-review, /review, /ship, /browse, /qa, /setup-browser-cookies, /retro. Then ask the user if they also want to add gstack to the current project so teammates get it.
 
+## Context Management
 
+- Before starting multi-step execution plans (especially wiki/codebase), use parallel Task agents for research phases to preserve main context
+- If a plan involves >10 steps or reading many docs, batch research into sub-agents and return only summaries
+- Aim to keep <50% context used before beginning actual implementation
 
 ## Git Commit Convention
 
