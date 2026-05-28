@@ -19,8 +19,8 @@ Every 2s frame classified along `distance × angle × motion × treatment`. Crea
 
 | Time | Frame | Classification | VO | Audio | Message | Creative |
 |------|-------|----------------|----|----|---------|----------|
-| 00:00 | ![](../../../../__Attachments/reels/<slug>-<YYYY-MM-DD>/frames/frame_0000.jpg) | MS · eye-level · walk-and-talk · talking-head | "Here's three years of scripting…" | ambient (footsteps) | Credential-flex lands harder outdoors — locked studio would read as training video | — |
-| 00:06 | ![](../../../../__Attachments/reels/<slug>-<YYYY-MM-DD>/frames/frame_0003.jpg) | WS · eye-level · walk-and-talk · title-card | "I like to call it the arc formula" | ambient | Full-screen acronym card is a visual metronome — marks structural boundary | [[shot-visual-metronome-acronym]] |
+| 00:00 | ![](../../_Attachments/reels/<slug>-<YYYY-MM-DD>/frames/frame_0000.jpg) | MS · eye-level · walk-and-talk · talking-head | "Here's three years of scripting…" | ambient (footsteps) | Credential-flex lands harder outdoors — locked studio would read as training video | — |
+| 00:06 | ![](../../_Attachments/reels/<slug>-<YYYY-MM-DD>/frames/frame_0003.jpg) | WS · eye-level · walk-and-talk · title-card | "I like to call it the arc formula" | ambient | Full-screen acronym card is a visual metronome — marks structural boundary | [[shot-visual-metronome-acronym]] |
 | ... |
 
 Rules:
@@ -41,7 +41,7 @@ Rhythmic repetition of the same classification is expected (a locked walk-and-ta
 
 After the catalogue, summarise the creative shots into a small roll-up — a 3-column grid of just the frames marked creative + their library link. Fast skim surface for the reel's signature visual moves.
 
-| ![](../../../../__Attachments/reels/<slug>-<YYYY-MM-DD>/frames/frame_NNNN.jpg) | ![](../../../../__Attachments/reels/<slug>-<YYYY-MM-DD>/frames/frame_MMMM.jpg) | ![](../../../../__Attachments/reels/<slug>-<YYYY-MM-DD>/frames/frame_KKKK.jpg) |
+| ![](../../_Attachments/reels/<slug>-<YYYY-MM-DD>/frames/frame_NNNN.jpg) | ![](../../_Attachments/reels/<slug>-<YYYY-MM-DD>/frames/frame_MMMM.jpg) | ![](../../_Attachments/reels/<slug>-<YYYY-MM-DD>/frames/frame_KKKK.jpg) |
 |---|---|---|
 | **[[shot-visual-metronome-acronym]]** at 00:06 | **[[shot-demo-as-proof]]** at 00:16 | **[[shot-embossed-object-outro]]** at 00:50 |
 
@@ -86,10 +86,10 @@ Follow the `insight` page structure from the master schema:
 
 ## Evidence
 
-- **[[reel-structure-X]] @ MM:SS** — `![MM:SS](../../../../__Attachments/reels/<slug>-<YYYY-MM-DD>/frames/frame_NNNN.jpg)`
+- **[[reel-structure-X]] @ MM:SS** — `![MM:SS](../../_Attachments/reels/<slug>-<YYYY-MM-DD>/frames/frame_NNNN.jpg)`
   Brief context: what's the VO at that moment and how the shot reinforces it. 1-2 sentences.
 
-- **[[reel-structure-Y]] @ MM:SS** — `![MM:SS](../../../../__Attachments/reels/<slug>-<YYYY-MM-DD>/frames/frame_NNNN.jpg)`
+- **[[reel-structure-Y]] @ MM:SS** — `![MM:SS](../../_Attachments/reels/<slug>-<YYYY-MM-DD>/frames/frame_NNNN.jpg)`
   ...
 
 Grow this list on every new ingest that uses the shot.
@@ -112,7 +112,7 @@ Grow this list on every new ingest that uses the shot.
 
 - **≤300 words** across all prose sections combined (Claim + Mechanism + When to use + When NOT to use). Evidence bullets are exempt — they grow over time and are the point.
 - **Evidence bullets are append-only across ingests.** Every new reel that uses this shot appends an entry here. Never rewrite old evidence.
-- **Screengrabs use the vault-relative 4-dotdot path** — `../../../../__Attachments/reels/<slug>-<YYYY-MM-DD>/frames/frame_NNNN.jpg` — because the shot page lives at the same depth as the reel pages (3 deep from vault root).
+- **Screengrabs use the vault-relative 2-dotdot path** — `../../_Attachments/reels/<slug>-<YYYY-MM-DD>/frames/frame_NNNN.jpg` — because the shot page lives at `wiki/Content/pages/` and the attachments live at `wiki/_Attachments/` (both two levels under `wiki/`).
 - **If two reels use the same shot but with subtly different effect,** do not fork the page. Document the variation inside the shot's Mechanism or evidence entry. Only fork when the shots are structurally different (e.g., `shot-reflection-framing` vs `shot-through-the-glass` — one uses a mirror, the other uses a transparent barrier).
 
 ### Naming

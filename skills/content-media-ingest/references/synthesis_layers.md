@@ -77,7 +77,7 @@ Every ingested piece must cover these layers. The layers are what make the page 
 6. **Benchmark Checklist** — 6–10 items.
 
 7. **Slide Grid**
-   3-column table, chronological. Each cell: slide number + `![](../../../../__Attachments/<folder>/slide_NN.jpg)`.
+   3-column table, chronological. Each cell: slide number + `![](../../_Attachments/<folder>/slide_NN.jpg)`.
 
 8. **Full Caption (verbatim)** — blockquoted.
 

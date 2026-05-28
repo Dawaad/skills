@@ -90,6 +90,7 @@ Use this dimension to tag frames that do something noteworthy the four-dimension
 - `era-encoded-pip` — subject or quote embedded inside a period-accurate UI/desktop chrome that encodes the era the speaker is describing (e.g., talking-head placed inside an MS Paint window while discussing 1990s web)
 - `diegetic-typography` — typographic beat (word card, question, title) displayed on an in-world surface — the story object's own screen, a chalkboard, a page — rather than as post-production overlay. The prop does the title-card's job.
 - `analog-screen-capture` — CRT monitor or laptop screen filmed with the physical camera (visible moire, scanlines, RGB split, glare) rather than clean screen-recorded. The capture texture becomes the era/authenticity signature.
+- `prismatic-edge-fringe` — fixed post-grade chromatic aberration / rainbow halation applied to a register of shots (typically the talking-head segments) and absent from another register (typically the b-roll). The fringe is a register-marker, not a defect — it teaches the viewer which segments are scaffolding-VO vs. proof-VO. Distinct from `analog-screen-capture` (which captures RGB split off a *real screen*); here the split is a recurring grade.
 
 **Rule:** never invent ad-hoc labels. If a frame's creative signature doesn't match an existing label, propose a new one in the log and add it to this taxonomy in the same edit. Labels persist across ingests; the value is in cross-reel lookup.
 

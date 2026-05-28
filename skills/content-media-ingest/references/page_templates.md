@@ -81,7 +81,7 @@ Every 2s frame classified along `distance · angle · motion · treatment`. Crea
 
 | Time | Frame | Classification | VO | Audio | Message | Creative |
 |------|-------|----------------|----|-------|---------|----------|
-| 00:00 | ![](../../../../__Attachments/reels/<slug>-<YYYY-MM-DD>/frames/frame_0000.jpg) | MS · eye-level · walk-and-talk · talking-head | "<VO fragment>" | ambient / <track name> / speech-only | <one sentence: what the shot communicates beyond its content> | [[shot-<name>]] or — |
+| 00:00 | ![](../../_Attachments/reels/<slug>-<YYYY-MM-DD>/frames/frame_0000.jpg) | MS · eye-level · walk-and-talk · talking-head | "<VO fragment>" | ambient / <track name> / speech-only | <one sentence: what the shot communicates beyond its content> | [[shot-<name>]] or — |
 | ... |
 
 Condense runs of ≥3 identical frames (same classification AND same message) into a single row with a frame range (e.g., `00:08–00:14 (4 frames)`). If classification changes or a creative signature appears, do not condense — keep a separate row.
@@ -90,7 +90,7 @@ Condense runs of ≥3 identical frames (same classification AND same message) in
 
 3-column grid showing only the frames flagged `Creative` above, with wikilinks to the atomic shot pages. This is the reel's signature visual moves at a glance.
 
-| ![](../../../../__Attachments/reels/<slug>-<YYYY-MM-DD>/frames/frame_NNNN.jpg) | ![](../../../../__Attachments/reels/<slug>-<YYYY-MM-DD>/frames/frame_MMMM.jpg) | ![](../../../../__Attachments/reels/<slug>-<YYYY-MM-DD>/frames/frame_KKKK.jpg) |
+| ![](../../_Attachments/reels/<slug>-<YYYY-MM-DD>/frames/frame_NNNN.jpg) | ![](../../_Attachments/reels/<slug>-<YYYY-MM-DD>/frames/frame_MMMM.jpg) | ![](../../_Attachments/reels/<slug>-<YYYY-MM-DD>/frames/frame_KKKK.jpg) |
 |---|---|---|
 | **[[shot-<name>]]** at MM:SS | **[[shot-<name>]]** at MM:SS | **[[shot-<name>]]** at MM:SS |
 
@@ -165,7 +165,7 @@ Roles vocabulary: Hook, Thesis, Restatement, Body, Proof, CTA, Sign-off, Bio. If
 
 | 01 | 02 | 03 |
 |---|---|---|
-| ![slide 01](../../../../__Attachments/carousels/<slug>-<YYYY-MM-DD>/slides/slide_01.jpg) | ![slide 02](../../../../__Attachments/carousels/<slug>-<YYYY-MM-DD>/slides/slide_02.jpg) | ![slide 03](../../../../__Attachments/carousels/<slug>-<YYYY-MM-DD>/slides/slide_03.jpg) |
+| ![slide 01](../../_Attachments/carousels/<slug>-<YYYY-MM-DD>/slides/slide_01.jpg) | ![slide 02](../../_Attachments/carousels/<slug>-<YYYY-MM-DD>/slides/slide_02.jpg) | ![slide 03](../../_Attachments/carousels/<slug>-<YYYY-MM-DD>/slides/slide_03.jpg) |
 | **04** | **05** | **06** |
 | ![slide 04](...) | ![slide 05](...) | ![slide 06](...) |
 | ...
@@ -184,7 +184,7 @@ Skip emoji-only comments. If nothing informative, write one line explaining why 
 
 ## Formatting pedantry that matters
 
-- **Relative attachment paths** are exactly four `../` segments — `../../../../__Attachments/...` — because the page lives at `wiki/Content/pages/` (3 deep into the vault).
+- **Relative attachment paths** use exactly two `../` segments — `../../_Attachments/...` — because the page lives at `wiki/Content/pages/` and the attachments live at `wiki/_Attachments/` (both two levels under `wiki/`).
 - **Frontmatter `Updated:`** uses capital U and no quotes: `Updated: 2026-04-23`.
 - **Page title** uses an em dash, not a hyphen, between the format label and the creator: `# Reel Structure — a16z × Kevin Systrom ...`.
 - **Duration format:** M:SS with no leading zero for minutes under 10 (e.g., `0:55`, `1:42`).

@@ -27,7 +27,7 @@ tags:
 - **Engagement (extract date):** <N> likes / <N> comments
 - **Caption:** "<verbatim caption, hashtags included>"
 - **Extracted bundle:** `reels/<slug>-<YYYY-MM-DD>/` (extraction.md + audio.wav + reel.mp4 + reel.info.json + frames/)
-- **Frames:** `__Attachments/reels/<slug>-<YYYY-MM-DD>/frames/` (<N> frames @ <interval>s interval)
+- **Frames:** `wiki/_Attachments/reels/<slug>-<YYYY-MM-DD>/frames/` (<N> frames @ <interval>s interval)
 - **Feeds page:** [[reel-structure-<slug>]]
 
 ## Music
@@ -91,7 +91,7 @@ tags:
 - **Engagement (extract date):** <N> likes / <N> comments
 - **Caption:** "<verbatim caption, line breaks preserved>"
 - **Extracted bundle:** `carousels/<bundle-folder>/` (extraction.md + slides/ + any per-slide videos)
-- **Slides:** `__Attachments/carousels/<slug>-<YYYY-MM-DD>/slides/slide_01.jpg` … `slide_NN.jpg`
+- **Slides:** `wiki/_Attachments/carousels/<slug>-<YYYY-MM-DD>/slides/slide_01.jpg` … `slide_NN.jpg`
 - **Feeds page:** [[carousel-structure-<slug>]]
 
 ## Music

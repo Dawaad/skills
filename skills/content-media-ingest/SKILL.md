@@ -15,7 +15,7 @@ The user is building a library of reference benchmarks for short-form content. E
 
 - **URL** (required) — an `instagram.com/reel/...` or `instagram.com/p/...` link.
 - **brand_type** (required) — `business` (corporate account: a16z, Foundr, Stripe) or `personal` (individual creator/founder). If not stated, ask *once* before running anything. Don't guess from the handle alone — creator accounts often post business content and vice versa.
-- **save_dir override** (optional) — user may specify where to save the raw extraction bundle. Default is `~/Documents/__Attachments/reels/` or `~/Documents/__Attachments/carousels/`.
+- **save_dir override** (optional) — user may specify where to save the raw extraction bundle. Default is `~/Documents/wiki/_Attachments/reels/` or `~/Documents/wiki/_Attachments/carousels/`.
 
 Vault root is `/home/jared/Documents/`. The Content wiki lives at `/home/jared/Documents/wiki/Content/`.
 
@@ -34,13 +34,13 @@ Reel:
 ```bash
 /home/jared/.claude/skills/instagram-reel-extractor/.venv/bin/python3 \
   /home/jared/.claude/skills/instagram-reel-extractor/scripts/extract_reel.py \
-  "<URL>" --save-dir ~/Documents/__Attachments/reels
+  "<URL>" --save-dir ~/Documents/wiki/_Attachments/reels
 ```
 
 Carousel:
 ```bash
 python3 /home/jared/dev/util/carousel-extractor/scripts/extract_carousel.py \
-  "<URL>" --save-dir ~/Documents/__Attachments/carousels
+  "<URL>" --save-dir ~/Documents/wiki/_Attachments/carousels
 ```
 
 Common failures:
@@ -59,23 +59,23 @@ Restructure so the markdown and the media live together inside the vault under a
 
 ```bash
 # 1. make slug-named bundle folder inside vault
-mkdir -p ~/Documents/__Attachments/reels/<slug>-<YYYY-MM-DD>/
+mkdir -p ~/Documents/wiki/_Attachments/reels/<slug>-<YYYY-MM-DD>/
 
 # 2. copy the media + info from the tmp bundle
 cp /tmp/reel_<hash>/audio.wav \
    /tmp/reel_<hash>/reel.mp4 \
    /tmp/reel_<hash>/reel.info.json \
-   ~/Documents/__Attachments/reels/<slug>-<YYYY-MM-DD>/
-cp -r /tmp/reel_<hash>/frames ~/Documents/__Attachments/reels/<slug>-<YYYY-MM-DD>/
+   ~/Documents/wiki/_Attachments/reels/<slug>-<YYYY-MM-DD>/
+cp -r /tmp/reel_<hash>/frames ~/Documents/wiki/_Attachments/reels/<slug>-<YYYY-MM-DD>/
 
 # 3. move the markdown into the bundle folder AND rename it extraction.md
-mv ~/Documents/__Attachments/reels/<creator>-reel-<YYYY-MM-DD>.md \
-   ~/Documents/__Attachments/reels/<slug>-<YYYY-MM-DD>/extraction.md
+mv ~/Documents/wiki/_Attachments/reels/<creator>-reel-<YYYY-MM-DD>.md \
+   ~/Documents/wiki/_Attachments/reels/<slug>-<YYYY-MM-DD>/extraction.md
 ```
 
-Result — every reel bundle in `~/Documents/__Attachments/reels/<slug>-<YYYY-MM-DD>/` contains exactly these files: `extraction.md`, `audio.wav`, `reel.mp4`, `reel.info.json`, `frames/`. This is the shape the source pointer and the in-Obsidian media embeds both rely on.
+Result — every reel bundle in `~/Documents/wiki/_Attachments/reels/<slug>-<YYYY-MM-DD>/` contains exactly these files: `extraction.md`, `audio.wav`, `reel.mp4`, `reel.info.json`, `frames/`. This is the shape the source pointer and the in-Obsidian media embeds both rely on.
 
-For carousels, the extractor already writes `extraction.md + slides/` into `~/Documents/__Attachments/carousels/<bundle>/`. No restructure needed; just confirm the bundle folder exists under that path before moving on.
+For carousels, the extractor already writes `extraction.md + slides/` into `~/Documents/wiki/_Attachments/carousels/<bundle>/`. No restructure needed; just confirm the bundle folder exists under that path before moving on.
 
 ### Step 2b — Multi-window Shazam scan (reels only)
 
@@ -111,10 +111,10 @@ Carousels skip this step — per-slide video beds are already handled by the car
 
 ### Step 3 — Confirm bundle is page-renderable
 
-After Step 2a, frames already live inside the bundle at `__Attachments/reels/<slug>-<YYYY-MM-DD>/frames/`. Carousel slides already live at `__Attachments/carousels/<slug>-<YYYY-MM-DD>/slides/`. There is no separate mirror copy — the bundle IS the attachment folder. Wiki pages embed those paths directly.
+After Step 2a, frames already live inside the bundle at `wiki/_Attachments/reels/<slug>-<YYYY-MM-DD>/frames/`. Carousel slides already live at `wiki/_Attachments/carousels/<slug>-<YYYY-MM-DD>/slides/`. There is no separate mirror copy — the bundle IS the attachment folder. Wiki pages embed those paths directly.
 
-- Reel frames → `__Attachments/reels/<slug>-<YYYY-MM-DD>/frames/frame_NNNN.jpg`
-- Carousel slides → `__Attachments/carousels/<slug>-<YYYY-MM-DD>/slides/slide_NN.jpg`
+- Reel frames → `wiki/_Attachments/reels/<slug>-<YYYY-MM-DD>/frames/frame_NNNN.jpg`
+- Carousel slides → `wiki/_Attachments/carousels/<slug>-<YYYY-MM-DD>/slides/slide_NN.jpg`
 
 The `<slug>` is a lowercase-kebab identifier combining creator + topic (e.g., `a16z-systrom-upload`, `foundr-boring-stuff`, `mason-personal-brand-offer`). Pick something someone skimming the index can read at a glance — creator first, then the 2-3 word topic anchor.
 
@@ -132,7 +132,7 @@ Always include: URL, creator + handle, duration/slide-count, upload date, engage
 
 1. **`## Music`** — dedicated subsection with every identified track broken out as structured fields. Never bury the song in a one-line bullet. For single-cue reels: Song / Artist / Genre / Cue map (`single cue, full runtime`) / Shazam link. For multi-cue reels: one entry per cue with `time-span — title — artist (genre) (narrative role)`. Carousels: capture per-slide audio if present; otherwise write one line explaining there is none. If Shazam returned no match, state that explicitly ("No distinct track identified — speech-dominant / silent / non-music bed"). The goal: the song titles are trivially greppable from the source file without opening the extraction bundle.
 
-2. **`## Media`** — dedicated subsection with Obsidian `![[...]]` embeds for playable media. Reels embed both `reel.mp4` and `audio.wav`. Carousels embed the slides grid in the page and embed any per-slide video beds in the source. The embed path is the vault-relative path — `![[__Attachments/reels/<slug>-<YYYY-MM-DD>/reel.mp4]]` — so Obsidian renders an inline player in preview mode. Without this block the user has to `cd` into the bundle folder to play the audio; we owe them a one-click play.
+2. **`## Media`** — dedicated subsection with Obsidian `![[...]]` embeds for playable media. Reels embed both `reel.mp4` and `audio.wav`. Carousels embed the slides grid in the page and embed any per-slide video beds in the source. The embed path is the vault-relative path — `![[wiki/_Attachments/reels/<slug>-<YYYY-MM-DD>/reel.mp4]]` — so Obsidian renders an inline player in preview mode. Without this block the user has to `cd` into the bundle folder to play the audio; we owe them a one-click play.
 
 See `references/source_template.md` for exact layout.
 
@@ -202,7 +202,7 @@ Keep bullets sorted newest-first within each brand block. If the Scripting Struc
 ## [YYYY-MM-DD] ingest | <Creator> <topic> <format> (<platform>, <duration or slide count>)
 - [[<page>]] (new) [flow] — <one-line synthesis signature>
 - source: `sources/<type>/<source-file>.md`
-- frames cached: `__Attachments/reels/<slug>-<YYYY-MM-DD>/frames/` or `__Attachments/carousels/<slug>-<YYYY-MM-DD>/slides/` (<count> @ <interval>)
+- frames cached: `wiki/_Attachments/reels/<slug>-<YYYY-MM-DD>/frames/` or `wiki/_Attachments/carousels/<slug>-<YYYY-MM-DD>/slides/` (<count> @ <interval>)
 - shot catalogue: <N frames classified, M creative frames flagged>
 - shot library additions: `[[shot-<name>]] (new)` OR `[[shot-<name>]] (evidence append)` — one bullet per atomic shot page created or extended
 - skipped: <anything intentionally dropped and why>
@@ -216,8 +216,8 @@ The `skipped:` line matters. It's how the wiki stays lean — the model has to j
 When done, tell the user:
 1. Page created: `wiki/Content/pages/<page>.md`
 2. Source: `wiki/Content/sources/<type>/<source>.md` — confirm it has **both** the `## Music` subsection and the `## Media` embed block
-3. Bundle: `~/Documents/__Attachments/reels/<slug>-<YYYY-MM-DD>/` or `~/Documents/__Attachments/carousels/<slug>-<YYYY-MM-DD>/` — the bundle IS the attachment folder. Confirm it contains `extraction.md`, `audio.wav`, `reel.mp4` (reels) or `slides/` + per-slide videos (carousels), `frames/`, and `reel.info.json` where applicable. If any of these are missing, name what's missing and why.
-4. Wiki page embeds reference paths inside that bundle (e.g., `__Attachments/reels/<slug>-<YYYY-MM-DD>/frames/frame_NNNN.jpg`).
+3. Bundle: `~/Documents/wiki/_Attachments/reels/<slug>-<YYYY-MM-DD>/` or `~/Documents/wiki/_Attachments/carousels/<slug>-<YYYY-MM-DD>/` — the bundle IS the attachment folder. Confirm it contains `extraction.md`, `audio.wav`, `reel.mp4` (reels) or `slides/` + per-slide videos (carousels), `frames/`, and `reel.info.json` where applicable. If any of these are missing, name what's missing and why.
+4. Wiki page embeds reference paths inside that bundle (e.g., `wiki/_Attachments/reels/<slug>-<YYYY-MM-DD>/frames/frame_NNNN.jpg`).
 5. Index + log updated
 6. **Shot Catalogue** (reels only): N frames classified, M creative frames flagged. List any new `shot-<name>.md` pages created and any existing pages that received new evidence.
 
@@ -230,7 +230,7 @@ Then paste the one-sentence thesis of the piece so the user sees whether the syn
 - **Don't copy the example pages literally.** They are *templates in spirit*, not forms to fill. The beat count, the pattern names, the checklist items are all particular to the piece. Copying the a16z 6-beat structure onto a carousel is wrong — carousels get slide-mapping, not beat-mapping.
 - **Don't create subfolders inside `pages/`.** Flat by design — kind + brand_type live in frontmatter.
 - **Don't promote derivative frameworks to their own pages yet.** If you notice a pattern that deserves its own `kind: framework` page (e.g., "analogy-transfer hook"), log it under `patterns surfaced (not yet promoted)` in the log entry — the user decides when to spin it out so the wiki doesn't bloat with half-baked abstractions.
-- **Don't leave the extraction bundle in `/tmp/`.** The reel extractor's `--save-dir` only writes the markdown summary; the media stays in `/tmp/reel_XXXXXX/` and dies on reboot. Step 2a is mandatory — the audio, mp4, frames, and info.json must all live inside the vault under `~/Documents/__Attachments/reels/<slug>-<YYYY-MM-DD>/` before you move on.
+- **Don't leave the extraction bundle in `/tmp/`.** The reel extractor's `--save-dir` only writes the markdown summary; the media stays in `/tmp/reel_XXXXXX/` and dies on reboot. Step 2a is mandatory — the audio, mp4, frames, and info.json must all live inside the vault under `~/Documents/wiki/_Attachments/reels/<slug>-<YYYY-MM-DD>/` before you move on.
 - **Don't bury the song metadata in a one-line bullet.** Every source file gets a dedicated `## Music` subsection with Song / Artist / Genre / Cue map / Shazam fields (or per-cue rows for multi-cue reels). This is what makes song titles greppable across the Content wiki — a bullet in a mixed field list is not good enough.
 - **Don't skip the `## Media` embed block.** The source file is where audio/video playback happens inside Obsidian. Missing `![[...]]` embeds = user has to leave Obsidian to hear the reel = the wiki failed at its job.
 - **Don't invent shot labels.** The Shot Catalogue vocabulary lives in `references/shot_taxonomy.md`. If a frame doesn't fit an existing label, propose a new one via edit to the taxonomy in the same ingest — do not just write an ad-hoc label into the catalogue. Consistency across ingests is the whole value.
